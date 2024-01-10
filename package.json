@@ -1,0 +1,15 @@
+{
+  "name": "test-server-bun",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bun-types": "^1.0.21"
+  },
+  "scripts": {
+    "start": "bun run index.ts"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
