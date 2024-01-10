@@ -41,7 +41,7 @@ const clients = new Set<ServerWebSocket>();
 // });
 
 const server = Bun.serve({
-  port: 3003,
+  port: 8000,
   fetch(req, server) {
     return new Response(JSON.stringify("Success!"), CORS_HEADERS);
   },
