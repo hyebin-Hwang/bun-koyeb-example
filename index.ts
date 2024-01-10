@@ -1,10 +1,10 @@
-// const CORS_HEADERS = {
-//   headers: {
-//     "Access-Control-Allow-Origin": "*",
-//     "Access-Control-Allow-Methods": "OPTIONS, POST",
-//     "Access-Control-Allow-Headers": "Content-Type",
-//   },
-// };
+const CORS_HEADERS = {
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "OPTIONS, POST",
+    "Access-Control-Allow-Headers": "Content-Type",
+  },
+};
 
 import type { ServerWebSocket } from "bun";
 
@@ -42,7 +42,7 @@ const clients = new Set<ServerWebSocket>();
 const server = Bun.serve({
   port: 3001,
   fetch(req, server) {
-    return new Response("Success!");
+    return new Response("Success!", CORS_HEADERS);
   },
 });
 
