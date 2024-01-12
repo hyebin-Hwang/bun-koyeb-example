@@ -50,7 +50,7 @@ const createDBTable = async () => {
           rejects(err);
         }
         resolve(res);
-        console.log("res=", res.rows);
+        console.log("res=", res);
       });
     });
   } catch (err) {
@@ -60,7 +60,7 @@ const createDBTable = async () => {
 };
 
 const server = Bun.serve({
-  port: process.env.DATABASE_PORT || 4000,
+  port: import.meta.env.SERVER_PORT,
   async fetch(req, server) {
     await createDBTable();
     return new Response(JSON.stringify("Success!"), CORS_HEADERS);
