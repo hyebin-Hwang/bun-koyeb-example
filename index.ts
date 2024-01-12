@@ -8,8 +8,9 @@ const CORS_HEADERS = {
 };
 
 import type { ServerWebSocket } from "bun";
+import client from "./db/connect";
 
-const clients = new Set<ServerWebSocket>();
+// const clients = new Set<ServerWebSocket>();
 
 // const server = Bun.serve({
 //   port: 3001,
@@ -40,9 +41,27 @@ const clients = new Set<ServerWebSocket>();
 //   }, // handlers
 // });
 
+const createDBTable = async () => {
+  const exampleQuery = "select * from employee";
+  try {
+    return new Promise((resolve, rejects) => {
+      client.query(exampleQuery, (err, res) => {
+        if (err) {
+          rejects(err);
+        }
+        resolve(res);
+        console.log("res=", res.rows);
+      });
+    });
+  } catch (err) {
+    throw err;
+  }
+};
+
 const server = Bun.serve({
-  port: 8000,
-  fetch(req, server) {
+  port: process.env.DATABASE_PORT,
+  async fetch(req, server) {
+    await createDBTable();
     return new Response(JSON.stringify("Success!"), CORS_HEADERS);
   },
 });
