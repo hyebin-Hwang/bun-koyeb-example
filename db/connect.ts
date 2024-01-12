@@ -12,9 +12,10 @@ import { Pool } from "pg";
 const client = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
+  port: Number(process.env.DATABASE_PORT),
 });
 
-client.connect((err) => {
+client.connect((err, client) => {
   if (err) {
     console.log("Failed to connect db " + err);
   } else {

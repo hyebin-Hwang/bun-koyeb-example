@@ -47,7 +47,6 @@ const createDBTable = async () => {
     return new Promise((resolve, rejects) => {
       client.query(exampleQuery, (err, res) => {
         if (err) {
-          console.log("err", err);
           rejects(err);
         }
         resolve(res);
